@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css'
+import './index.less'
 function Login() {
   return (
     <div className='login'>1</div>
