@@ -1,0 +1,73 @@
+@login_bg: url("../../../assets/images/login/bg.jpg") no-repeat fixed center;
+
+.login_box {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: @login_bg;
+    background-size: cover;
+    text-align: center;
+
+    .content_box {
+        position: relative;
+        margin: 10% auto;
+        width: 700px;
+        height: 300px;
+        border-radius: 10px;
+        background: rgba(190, 190, 190, 0.4);
+        overflow: hidden;
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+          }
+          .content {
+            display: flex;
+            color: #fff;
+            .left {
+              margin-top: 12%;
+              padding-top: 50px;
+              width: 68%;
+              height: 150px;
+              border-right: 1px solid #ccc;
+              border-color: rgba(255, 255, 255, 0.6);
+              text-align: center;
+              .title {
+                font-size: 28px;
+                font-family: Regular;
+              }
+              .edition {
+                font-size: 12px;
+                font-family: Regular;
+                margin-left: 5px;
+              }
+              .english {
+                font-size: 13px;
+                font-family: Arista2;
+              }
+            }
+            .right {
+              margin-top: 50px;
+              padding: 0 20px;
+              flex: 1;
+              .login_title {
+                font-size: 20px;
+                font-family: Regular;
+                font-weight: normal;
+              }
+              .login_form {
+                max-width: 300px;
+                .icon_color {
+                  color: #fff;
+                }
+                .login_form_button {
+                  width: 100%;
+                  border-radius: 20px;
+                }
+              }
+            }
+          }
+    }
+}
