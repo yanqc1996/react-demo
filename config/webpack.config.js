@@ -70,7 +70,7 @@ module.exports = function(webpackEnv) {
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 
   // common function to get style loaders
-  const getStyleLoaders = (cssOptions, preProcessor) => {
+  const getStyleLoaders = (cssOptions, lessOptions, preProcessor) => {
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
@@ -84,6 +84,14 @@ module.exports = function(webpackEnv) {
       {
         loader: require.resolve('css-loader'),
         options: cssOptions,
+      },
+      {
+        loader: require.resolve('less-loader'),
+        options: {
+          lessOptions: {
+            strictMath: true,
+          },
+        },
       },
       {
         // Options for PostCSS as we reference these options twice
@@ -300,6 +308,7 @@ module.exports = function(webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
+        '@': path.resolve(__dirname, '../src')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -441,30 +450,6 @@ module.exports = function(webpackEnv) {
               // See https://github.com/webpack/webpack/issues/6571
               sideEffects: true,
             },
-           /* 下面是添加代码块 */
-           {
-            test: lessRegex,
-            exclude: lessModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,// 值是1
-              sourceMap: isEnvProduction && shouldUseSourceMap
-            },
-              "less-loader"
-            ),
-            sideEffects: true
-          },
-          {
-            test: lessModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              sourceMap: isEnvProduction && shouldUseSourceMap,
-              modules: true, // 增加这个可以通过模块方式来访问less
-              getLocalIdent: getCSSModuleLocalIdent
-            },
-              "less-loader"
-            )
-          },
-          /* 上面是添加代码块 */
             // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
             // using the extension .module.css
             {
@@ -477,6 +462,31 @@ module.exports = function(webpackEnv) {
                 },
               }),
             },
+                      /* 下面是添加代码块 */
+           {
+            test: lessRegex,
+            exclude: lessModuleRegex,
+            use: getStyleLoaders({
+              importLoaders: 3,// 值是1
+              sourceMap: isEnvProduction && shouldUseSourceMap
+            },
+              "less-loader"
+            ),
+            sideEffects: true
+          },
+          {
+            test: lessModuleRegex,
+            use: getStyleLoaders({
+              importLoaders: 3,
+              sourceMap: isEnvProduction && shouldUseSourceMap,
+              modules: {
+                getLocalIdent: getCSSModuleLocalIdent,
+              },
+            },
+              "less-loader"
+            )
+          },
+          /* 上面是添加代码块 */
             // Opt-in support for SASS (using .scss or .sass extensions).
             // By default we support SASS Modules with the
             // extensions .module.scss or .module.sass

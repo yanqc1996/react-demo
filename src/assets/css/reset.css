@@ -1,0 +1,82 @@
+/**
+* @desc 统一基础样式
+* @author zhouenjun
+* @date 2020/02/14
+*/
+html, body, div,
+ul, li, th, td,
+h1, h2, h3, h4, h5, h6, p,
+fieldset, legend, dl, dt, dd,
+input, textarea, select, form,
+section, header, main, footer, aside {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html,body {
+    height: 100%;
+}
+body {
+    font-family: MicrosoftYaHei;
+    font-weight: normal;
+    font-stretch: normal;
+    color: #333;
+    letter-spacing: 0;
+    overflow: hidden;
+
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    -moz-user-select: text;
+}
+/* 去掉ul和li的list-style */
+ul,li {
+    list-style: none;
+}
+/* 去掉canvas和button的list-style */
+canvas,button {
+    outline: none;
+}
+
+/* 清除浮动 */
+.clearfix::after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+/* 相对定位 */
+.sticky {
+    position: relative;
+    z-index: 1999;
+}
+/* 绝对定位 */
+.absolute {
+    position: absolute;
+    z-index: 1999;
+}
+/* 内容溢出用省略号展示 */
+.ellipis {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+::-webkit-scrollbar-corner {
+    background-color: #ddd;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #b4bccc;
+}
+::-webkit-scrollbar-track {
+    background-color: #ddd;
+}
+/* 自定义滚动条样式 */
