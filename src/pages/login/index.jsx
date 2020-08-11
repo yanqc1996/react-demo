@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //connet的作用就是与外部的Provide进行连接
 import { connect } from "react-redux";
 //引入login样式
-import "./less/login.less";
+import "./login.less";
 import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
