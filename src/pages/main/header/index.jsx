@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { Avatar, Menu, Dropdown } from 'antd'
 import {
   MenuUnfoldOutlined,
@@ -7,27 +8,45 @@ import {
   PoweroffOutlined,
 } from '@ant-design/icons'
 import './header.less'
-const menu = (
-  <Menu>
-    <Menu.Item>
-      <PoweroffOutlined style={{ color: '#F2BE21' }} />
-      版本日志
-    </Menu.Item>
-    <Menu.Item>
-      <PoweroffOutlined style={{ color: 'red' }} />
-      退出
-    </Menu.Item>
-  </Menu>
-)
+// const menu = (
+//   <Menu>
+//     <Menu.Item>
+//       <PoweroffOutlined style={{ color: '#F2BE21' }} />
+//       版本日志
+//     </Menu.Item>
+//     <Menu.Item>
+//       <PoweroffOutlined style={{ color: 'red' }} />
+//       退出
+//     </Menu.Item>
+//   </Menu>
+// )
 class MainHeader extends Component {
-  state = {
-    collapsed: false,
+  constructor(props) {
+    super(props)
+    this.state = {
+      collapsed: false,
+      menu: (
+        <Menu>
+          <Menu.Item>
+            <PoweroffOutlined style={{ color: '#F2BE21' }} />
+            版本日志
+          </Menu.Item>
+          <Menu.Item onClick={this.loginOut}>
+            <PoweroffOutlined style={{ color: 'red' }} />
+            退出
+          </Menu.Item>
+        </Menu>
+      ),
+    }
   }
 
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     })
+  }
+  loginOut = () => {
+    this.props.history.push('/') //控制路由进行跳转
   }
   render() {
     return (
@@ -42,7 +61,7 @@ class MainHeader extends Component {
         <div className="header-right">
           <Avatar size="small" icon={<UserOutlined />} />
           <span className="header-user">浙江ict</span>
-          <Dropdown overlay={menu}>
+          <Dropdown overlay={this.state.menu}>
             <PoweroffOutlined />
           </Dropdown>
         </div>
@@ -50,4 +69,4 @@ class MainHeader extends Component {
     )
   }
 }
-export default MainHeader
+export default withRouter(MainHeader)

@@ -12,10 +12,13 @@ class Home extends Component {
   }
 }
 
-// state--store内的state
-const mapStateToProps = state => {};
+const mapStateToProps = (state) => {
+  return {}
+}
 
 // dispatch--调用store的方法，store.dispatch
-const mapDispathToProps = dispatch => {};
+const mapDispathToProps = (dispatch) => {
+  return {}
+}
 
 export default connect(mapStateToProps, mapDispathToProps)(Home);
