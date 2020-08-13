@@ -78,16 +78,8 @@ class LeftMenu extends Component {
       ],
     }
   }
-  changeMode = (value) => {
-    this.setState({
-      mode: value ? 'vertical' : 'inline',
-    })
-  }
-
-  changeTheme = (value) => {
-    this.setState({
-      theme: value ? 'dark' : 'light',
-    })
+  componentDidMount() {
+    console.log(this.props.menuCollapsed)
   }
   changeItem = (value) => {
     this.props.history.push(value.key) //控制路由进行跳转
@@ -123,7 +115,9 @@ class LeftMenu extends Component {
 }
 // state--store内的state
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    menuCollapsed: state.main.menuCollapsed, //该数据显示将store中的某个数据映射到组件的props中，可以动态变化数据
+  }
 }
 
 // dispatch--调用store的方法，store.dispatch

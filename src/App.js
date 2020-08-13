@@ -14,7 +14,7 @@ import { First } from '@/router/index'
 import '@/assets/css/reset.css'
 
 class App extends Component {
-  render() {
+  render() { 
     return (
       <Provider store={store}>
         {/* Provider在根组件外面包了一层，这样一来，App的所有子组件就默认都可以拿到state了 */}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { Avatar, Menu, Dropdown } from 'antd'
 import {
   MenuUnfoldOutlined,
@@ -8,18 +9,6 @@ import {
   PoweroffOutlined,
 } from '@ant-design/icons'
 import './header.less'
-// const menu = (
-//   <Menu>
-//     <Menu.Item>
-//       <PoweroffOutlined style={{ color: '#F2BE21' }} />
-//       版本日志
-//     </Menu.Item>
-//     <Menu.Item>
-//       <PoweroffOutlined style={{ color: 'red' }} />
-//       退出
-//     </Menu.Item>
-//   </Menu>
-// )
 class MainHeader extends Component {
   constructor(props) {
     super(props)
@@ -39,23 +28,18 @@ class MainHeader extends Component {
       ),
     }
   }
-
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    })
-  }
   loginOut = () => {
     this.props.history.push('/') //控制路由进行跳转
   }
   render() {
+    const { toggle } = this.props
     return (
       <div className="header">
         {React.createElement(
           this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
           {
             className: 'header-icon',
-            onClick: this.toggle,
+            onClick: toggle,
           }
         )}
         <div className="header-right">
@@ -69,4 +53,21 @@ class MainHeader extends Component {
     )
   }
 }
-export default withRouter(MainHeader)
+const mapStateToProps = (state) => {}
+
+// dispatch--调用store的方法，store.dispatch
+const mapDispathToProps = (dispatch) => {
+  return {
+    toggle: () => {
+      const INCREASE = {
+        type: 'increase',
+      }
+      dispatch(INCREASE)//根据INCREASE中的type触发action中的increase方法，触发menu中的数据数据变化
+    },
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(withRouter(MainHeader))

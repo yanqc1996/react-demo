@@ -4,18 +4,19 @@ import { withRouter } from 'react-router-dom'
 import { SystemRouter } from '@/router/index'
 import { connect } from 'react-redux'
 import { Layout } from 'antd'
-import LeftMenu from './menu'
-import MainBread from '@/components/main/mainBread'//面包屑标题头
-import MainHeader from './header'
+import LeftMenu from '@/components/main/menu'
+import MainBread from '@/components/main/mainBread' //面包屑标题头
+import MainHeader from '@/components/main/header' //头部
 import './main.less'
 const { Header, Sider, Content } = Layout
 
 class Main extends Component {
   render() {
+    const {menuCollapsed}=this.props
     return (
       <div className="main">
         <Layout className="main-layout">
-          <Sider width={'220px'}>
+          <Sider width={'220px'} collapsible collapsed={menuCollapsed} >
             <div className="menu-logo">无线基站态势感知工具</div>
             <LeftMenu></LeftMenu>
           </Sider>
@@ -26,8 +27,8 @@ class Main extends Component {
             <Content>
               <div className="main-router">
                 <MainBread></MainBread>
-                <div className='router-inner'>
-                <SystemRouter />
+                <div className="router-inner">
+                  <SystemRouter />
                 </div>
                 {/* 二层路由嵌套 */}
               </div>
@@ -40,9 +41,10 @@ class Main extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    menuCollapsed: state.main.menuCollapsed, //该数据显示将store中的某个数据映射到组件的props中，可以动态变化数据
+  }
 }
-
 // dispatch--调用store的方法，store.dispatch
 const mapDispathToProps = (dispatch) => {
   return {}
