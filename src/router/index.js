@@ -1,7 +1,10 @@
 import routes from './config'
+//引入自定义路由组件数据
 import React, { Component } from 'react'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
+  //BrowserRouter：服务端路由，需要后台进行配置
+  //HashRouter:客户端路由
   Switch,
   Route,
   Redirect,
@@ -59,7 +62,7 @@ export {
 // A special wrapper for <Route> that knows how to
 // handle "sub"-routes by passing them in a `routes`
 // prop to the component it renders.
-/*开放路由*/
+/*嵌套路由函数组件*/
 function RouteWithSubRoutes(route) {
   return (
     <Route
@@ -72,10 +75,11 @@ function RouteWithSubRoutes(route) {
     />
   )
 }
-/*登录检测路由,路由守卫*/
+/*登录检测路由方法,路由守卫函数组件*/
 function PrivateRoute({ children, ...rest }) {
-  //   let isAuthenticated = sessionStorage.auth;
+    // let isAuthenticated = sessionStorage.auth;
   let isAuthenticated = '123'
+  //此处可以根据isAuthenticated参数来判断用户是否登陆，然后执行路由守卫
   return (
     <Route
       {...rest}
@@ -91,6 +95,7 @@ function PrivateRoute({ children, ...rest }) {
           />
         )
       }
+      //这一段话有点不是很懂，具体的作用类似Vue的路由守卫，存在路由参数则正常跳转，不存在则跳回登陆页面
     />
   )
 }

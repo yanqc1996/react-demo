@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Avatar, Menu, Dropdown } from 'antd'
+import { Menu, Dropdown } from 'antd'
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  UserOutlined,
   PoweroffOutlined,
 } from '@ant-design/icons'
 import './header.less'
@@ -33,19 +32,19 @@ class MainHeader extends Component {
   }
   render() {
     const { toggle } = this.props
+    const {collapsed,menu}=this.state
     return (
       <div className="header">
         {React.createElement(
-          this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+          collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
           {
             className: 'header-icon',
             onClick: toggle,
           }
         )}
         <div className="header-right">
-          <Avatar size="small" icon={<UserOutlined />} />
-          <span className="header-user">浙江ict</span>
-          <Dropdown overlay={this.state.menu}>
+          <span className="header-user">阿毛心怀宇宙</span>
+          <Dropdown overlay={menu}>
             <PoweroffOutlined />
           </Dropdown>
         </div>

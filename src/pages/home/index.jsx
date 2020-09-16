@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 //connet的作用就是与外部的Provide进行连接
 import { connect } from "react-redux";
-import '@/pages/home/less/index.less'
+import './home.less'
 
 
 class Home extends Component {

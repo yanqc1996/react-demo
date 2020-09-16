@@ -1,6 +1,6 @@
 /**
  * @description 基础api配置对象
- * @author dunfee
+ * @author yanqc
  * @date 2019/10/30
  */
 import axios from './http';

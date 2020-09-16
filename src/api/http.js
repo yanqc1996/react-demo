@@ -1,6 +1,14 @@
+/*
+ * @Author: your name
+ * @Date: 2020-05-19 11:31:50
+ * @LastEditTime: 2020-09-13 10:50:05
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /react-demo/src/api/http.js
+ */
 /**
  * @description axios二次封装（请求延时时间，拦截器等）
- * @author dunfee
+ * @author yanqc
  * @date 2019/10/30
  */
 import axios from 'axios';

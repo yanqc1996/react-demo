@@ -1,95 +1,36 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
 //connet的作用就是与外部的Provide进行连接
 import { connect } from 'react-redux'
+import FormLogin from '@/components/login'
 //引入login样式
 import './login.less'
-import { Form, Input, Button } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
-
 class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      btnLoading: false,
+      title: '阿毛心怀宇宙',
+      version: 'v1.0.0',
     }
   }
   render() {
+    const { title, version } = this.state
     return (
       <div className="login_box">
         <div className="content_box">
-          <div className="logo">
-            <img src={[require('../../assets/images/login/logo.png')]} alt="" />
-          </div>
           <div className="content">
             <div className="left">
-              <span className="title">智慧运维管理平台</span>
-              <span className="edition">v0.0.1</span>
+              <span className="title">{title}</span>
+              <span className="edition">{version}</span>
               <br />
-              <span className="english">
-                WIRELESS RESOURCE REAL-TIME MANAGEMENT PLATFORM
-              </span>
             </div>
             <div className="right">
               <span className="login_title">账号登陆</span>
-              <Form
-                name="normal_login"
-                className="login_form"
-                initialValues={{ remember: true }}
-                onFinish={this.onFinish.bind(this)}
-              >
-                <Form.Item
-                  name="username"
-                  rules={[{ required: true, message: '请输入用户名!' }]}
-                >
-                  <Input
-                    prefix={<UserOutlined className="site-form-item-icon" />}
-                    placeholder="Username"
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="password"
-                  rules={[{ required: true, message: '请输入密码!' }]}
-                >
-                  <Input
-                    prefix={<LockOutlined className="site-form-item-icon" />}
-                    type="password"
-                    placeholder="Password"
-                  />
-                </Form.Item>
-
-                <Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    className="login_form_button"
-                    loading={this.state.btnLoading}
-                  >
-                    登录
-                  </Button>
-                </Form.Item>
-              </Form>
+              <FormLogin />
             </div>
           </div>
         </div>
       </div>
     )
-  }
-
-  onFinish = (values) => {
-    this.setState(
-      () => ({
-        btnLoading: true,
-      }),
-      () => {
-        setTimeout(() => {
-          this.setState(() => ({
-            btnLoading: false,
-          }))
-        }, 1000)
-      }
-    )
-    this.props.history.push('/main/multiHealth') //控制路由进行跳转
   }
 }
 
@@ -100,8 +41,7 @@ class Login extends Component {
 //这个对象有一个todos属性，代表 UI 组件的同名参数，后面的getVisibleTodos也是一个函数，可以从state算出 todos 的值。
 
 const mapStateToProps = (state) => {
-  return {
-  }
+  return {}
 }
 
 // dispatch--调用store的方法，store.dispatch
@@ -118,4 +58,4 @@ const mapDispathToProps = (dispatch) => {
 //它们定义了 UI 组件的业务逻辑。前者负责输入逻辑，即将state映射到 UI 组件的参数（props）
 //只负责 UI 的呈现，不带有任何业务逻辑，没有状态（即不使用this.state这个变量），所有数据都由参数（this.props）提供，不使用任何 Redux 的 API
 //后者负责输出逻辑，即将用户对 UI 组件的操作映射成 Action。
-export default connect(mapStateToProps, mapDispathToProps)(withRouter(Login))
+export default connect(mapStateToProps, mapDispathToProps)(Login)

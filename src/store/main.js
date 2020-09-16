@@ -1,11 +1,14 @@
-// reducers/count.js
-// import {
-//     INCREASE,
-// } from './constants' // 引入action类型常量名
-
+/*
+ * @Author: your name
+ * @Date: 2020-08-13 10:39:05
+ * @LastEditTime: 2020-09-16 14:40:49
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /react-demo/src/store/main.js
+ */
 // 初始化state数据
 const initialState = {
-    menuCollapsed: true,
+    menuCollapsed: false,
 }
 
 // 通过dispatch action进入
